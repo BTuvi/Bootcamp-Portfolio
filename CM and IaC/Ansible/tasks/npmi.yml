@@ -1,0 +1,4 @@
+- name: Update packages based on package.json to their latest version.
+  npm:
+    path: /home/{{USERNAME}}/bootcamp-app
+    state: latest

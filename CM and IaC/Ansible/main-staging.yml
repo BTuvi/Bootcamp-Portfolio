@@ -1,0 +1,37 @@
+---
+- hosts: staging
+  remote_user: BTuvi
+  become: yes
+  vars_files:
+  - vars-staging.yml
+  become_method: sudo
+  vars:
+    temp_folder: /tmp
+  tasks:
+    #Restart app
+    - include: tasks/restartapp.yml
+
+    #Install prerequisites
+    - include: tasks/prerequisites.yml
+
+    #Install Node.js
+    - include: tasks/nodejs.yml
+
+    #Git clone to project
+    #- include: tasks/gitclone.yml
+    
+    #Copy app folder to remote server.
+    - include: tasks/copy_appfolder_artifact.yml
+
+    #Add .env file
+    - include: tasks/addEnvFile.yml
+
+    #npm i
+    - include: tasks/npmi.yml
+
+    #InitDB
+    - include: tasks/dbrun.yml
+
+    # PM2 jobs
+    - include: tasks/pm2job.yml
+

@@ -1,0 +1,9 @@
+[production]
+51.124.231.117
+52.232.69.210
+[staging]
+51.124.203.34
+52.174.239.1
+[appservers:children]
+production
+staging
